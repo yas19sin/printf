@@ -7,7 +7,7 @@
  */
 int is_printable(char c)
 {
-    return (c >= 32 && c < 127);
+	return (c >= 32 && c < 127);
 }
 
 /**
@@ -17,7 +17,7 @@ int is_printable(char c)
  * Return: 1 if 'c' is a digit, 0 otherwise.
  */
 int is_digit(char c) {
-    return (c >= '0' && c <= '9');
+	return (c >= '0' && c <= '9');
 }
 
 /**
@@ -29,18 +29,18 @@ int is_digit(char c) {
  * Return: Always 3 (the number of characters appended).
  */
 int hex_code(char asciiCode, char buffer[], int i) {
-    const char HEX_MAP[] = "0123456789ABCDEF";
+	const char HEX_MAP[] = "0123456789ABCDEF";
 
-    if (asciiCode < 0)
-        asciiCode *= -1;
+	if (asciiCode < 0)
+		asciiCode *= -1;
 
-    buffer[i++] = '\\';
-    buffer[i++] = 'x';
+	buffer[i++] = '\\';
+	buffer[i++] = 'x';
 
-    buffer[i++] = HEX_MAP[asciiCode / 16];
-    buffer[i] = HEX_MAP[asciiCode % 16];
+	buffer[i++] = HEX_MAP[asciiCode / 16];
+	buffer[i] = HEX_MAP[asciiCode % 16];
 
-    return 3;
+	return 3;
 }
 
 /**
@@ -51,12 +51,12 @@ int hex_code(char asciiCode, char buffer[], int i) {
  * Return: The value of 'num' after conversion.
  */
 long int convert_size_number(long int num, int size) {
-    if (size == S_LONG)
-        return num;
-    else if (size == S_SHORT)
-        return (short)num;
+	if (size == S_LONG)
+		return num;
+	else if (size == S_SHORT)
+		return (short)num;
 
-    return (int)num;
+	return (int)num;
 }
 
 /**
@@ -67,10 +67,10 @@ long int convert_size_number(long int num, int size) {
  * Return: The value of 'num' after conversion.
  */
 long int convert_size_unsigned(unsigned long int num, int size) {
-    if (size == S_LONG)
-        return num;
-    else if (size == S_SHORT)
-        return (unsigned short)num;
+	if (size == S_LONG)
+		return num;
+	else if (size == S_SHORT)
+		return (unsigned short)num;
 
-    return (unsigned int)num;
+	return (unsigned int)num;
 }

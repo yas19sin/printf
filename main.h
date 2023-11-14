@@ -64,7 +64,7 @@ int write_pointers(char buffer[], int ind, int length,
 	int width, int flags, char padd, char extra_c, int paddstart);
 
 int print_with_format(const char *fmt, int *ind, va_list list, char buffer[],
-                      int flags, int width, int precision, int size);
+					  int flags, int width, int precision, int size);
 int printChar(va_list args, char buffer[],
 	int flags, int width, int precision, int size);
 int printString(va_list args, char buffer[],
