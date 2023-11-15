@@ -13,20 +13,27 @@
  * Return: 1 if successful, 2 if there was an issue.
  */
 int print_with_format(const char *fmt, int *ind, va_list list, char buffer[],
-					  int flags, int width, int precision, int size)
+                      int flags, int width, int precision, int size)
 {
-	int i, unknownLen = 0, printedChars = -1;
-	fmt_t fmt_types[] = {
-		{'c', printChar}, {'s', printString}, {'%', printPercent},
-		{'i', printInteger}, {'d', printInteger}, {'b', printBinary},
-		{'u', printUnsigned}, {'o', printOctal}, {'x', printHexadecimal},
-		{'X', printHexUpper}, {'p', printPointer}, {'S', printNonPrintable},
-		{'r', printReverse}, {'R', printRot13String}, {'\0', NULL}
-	};
+    int i, unknownLen = 0, printedChars = -1;
+    fmt_t fmt_types[] = {
+        {'c', printChar}, {'s', printString}, {'%', printPercent},
+        {'i', printInteger}, {'d', printInteger}, {'b', printBinary},
+        {'u', printUnsigned}, {'o', printOctal}, {'x', printHexadecimal},
+        {'X', printHexUpper}, {'p', printPointer}, {'S', printNonPrintable},
+        {'r', printReverse}, {'R', printRot13String}, {'\0', NULL}
+    };
 
-	for (i = 0; fmt_types[i].fmt != '\0'; i++)
-		if (fmt[*ind] == fmt_types[i].fmt)
-			return (fmt_types[i].fn(list, buffer, flags, width, precision, size));
+    for (i = 0; fmt_types[i].fmt != '\0'; i++)
+        if (fmt[*ind] == fmt_types[i].fmt)
+            return (fmt_types[i].fn(list, buffer, flags, width, precision, size));
+
+    if (fmt_types[i].fmt == '\0' || fmt_types[i].fmt == 'r') {
+        if (fmt[*ind] == '\0')
+            return -1;
+        append_to_buffer(buffer, ind, &fmt[*ind]);
+        return 1;
+    }
 
 	if (fmt_types[i].fmt == '\0') {
 		if (fmt[*ind] == '\0')

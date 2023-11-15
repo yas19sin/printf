@@ -33,15 +33,8 @@ int _printf(const char *format, ...)
 			precision = get_precision(format, &i, args);
 			size = get_size(format, &i);
 			++i;
-			if (format[i] == 'r')
-			{
-				format_chars = handle_unknown_format(buffer, &buff_index);
-			}
-			else
-			{
-				format_chars = print_with_format(format, &i, args, buffer,
-											  flags, width, precision, size);
-			}
+			format_chars = print_with_format(format, &i, args, buffer,
+				flags, width, precision, size);
 			if (format_chars == -1)
 				return -1;
 			printed_chars += format_chars;
@@ -53,19 +46,6 @@ int _printf(const char *format, ...)
 	va_end(args);
 
 	return (printed_chars);
-}
-
-/**
- * handle_unknown_format - Process unknown format specifiers.
- * @buff: Character buffer.
- * @buff_index: Pointer to buffer index.
- * Return: Number of characters printed for unknown format.
- */
-int handle_unknown_format(char buff[], int *buff_index)
-{
-	int len = 0;
-	len += append_to_buffer(buff, buff_index, "%r");
-	return (len);
 }
 
 /**

@@ -37,7 +37,6 @@ typedef struct fmt fmt_t;
 
 int _printf(const char *format, ...);
 void buffer_print(char buff[], int *buff_index);
-int handle_unknown_format(char buff[], int *buff_index);
 int append_to_buffer(char buff[], int *buff_index, const char *str);
 
 int extract_flags(const char *format, int *i);
